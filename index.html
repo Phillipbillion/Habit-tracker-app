@@ -8,45 +8,80 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-<div class="container">
-  <h1>Habit Tracker</h1>
-  <p class="notice">This app runs entirely in your browser. No accounts. No data collection.</p>
+<div class="app-container">
 
-  <!-- Upgrade / Pro -->
-  <button id="upgrade-btn">Support & Enable Pro</button>
+  <!-- Header -->
+  <header class="app-header">
+    <h1>Habit Tracker</h1>
+  </header>
 
-  <!-- Habit input -->
-  <input type="text" id="habit-input" placeholder="Add a new habit">
-  <button id="add-habit-btn">Add Habit</button>
+  <!-- Bottom Navigation -->
+  <nav class="bottom-nav">
+    <button id="nav-home" class="active">🏠 Home</button>
+    <button id="nav-stats">📊 Stats</button>
+    <button id="nav-settings">⚙️ Settings</button>
+  </nav>
 
-  <!-- Habit list -->
-  <ul id="habit-list"></ul>
+  <!-- Main content -->
+  <main class="app-main">
 
-  <!-- Points & Stats -->
-  <p id="points">Points: 0</p>
-  <p id="today-completed">Habits completed today: 0</p>
-  <p id="longest-streak">Longest streak: 0</p>
+    <!-- Home Section -->
+    <section id="section-home" class="section active">
+      <p class="notice">This app runs entirely in your browser. No accounts. No data collection.</p>
 
-  <!-- Analytics (Pro Only) -->
-  <div id="analytics-panel">
-    <h3>📈 Analytics & Insights (Pro Only)</h3>
-    <p id="weekly-completed">Habits completed this week: 0</p>
-    <p id="monthly-completed">Habits completed this month: 0</p>
-    <canvas id="weekly-chart" width="400" height="200"></canvas>
-    <canvas id="monthly-chart" width="400" height="200"></canvas>
-  </div>
+      <!-- Upgrade / Pro -->
+      <button id="upgrade-btn">Support & Enable Pro</button>
 
-  <!-- AI Suggestions (Pro Only) -->
-  <div id="ai-suggestions-panel">
-    <h3>🤖 AI Suggestions & Motivation</h3>
-    <ul id="ai-suggestions-list"></ul>
-  </div>
+      <!-- Habit input -->
+      <input type="text" id="habit-input" placeholder="Add a new habit">
+      <button id="add-habit-btn">Add Habit</button>
 
-  <!-- Theme toggle -->
-  <button id="theme-toggle-btn">🌙 Dark Mode</button>
+      <!-- Habit list -->
+      <ul id="habit-list"></ul>
+
+      <!-- Points & Stats -->
+      <p id="points">Points: 0</p>
+      <p id="today-completed">Habits completed today: 0</p>
+      <p id="longest-streak">Longest streak: 0</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="section-stats" class="section">
+      <h3>📈 Analytics & Insights (Pro Only)</h3>
+      <p id="weekly-completed">Habits completed this week: 0</p>
+      <p id="monthly-completed">Habits completed this month: 0</p>
+      <canvas id="weekly-chart" width="400" height="200"></canvas>
+      <canvas id="monthly-chart" width="400" height="200"></canvas>
+    </section>
+
+    <!-- Settings Section -->
+    <section id="section-settings" class="section">
+      <h3>⚙️ Settings</h3>
+
+      <!-- Theme -->
+      <p>Theme:</p>
+      <button id="theme-light-btn">☀️ Light</button>
+      <button id="theme-dark-btn">🌙 Dark</button>
+      <button id="theme-color-btn">🎨 Change Accent Color</button>
+
+      <!-- Notifications (simulated) -->
+      <p>Notifications:</p>
+      <label>
+        <input type="checkbox" id="notifications-toggle">
+        Enable Notifications
+      </label>
+
+      <!-- Reset Data -->
+      <button id="reset-data-btn">♻️ Reset Data</button>
+
+      <!-- About & Pro -->
+      <p>About: Habit Tracker App by Phillipbillion</p>
+      <p id="pro-reminder">Upgrade to Pro for unlimited habits, analytics & AI suggestions!</p>
+    </section>
+
+  </main>
 </div>
 
-<!-- Only include your JS, no service worker or manifest -->
 <script src="app.js"></script>
 </body>
 </html>
