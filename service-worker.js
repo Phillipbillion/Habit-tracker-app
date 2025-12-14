@@ -1,20 +1,18 @@
-const CACHE_NAME = "habit-tracker-v1";
-const ASSETS = [
-  "/habit-tracker-app/",
-  "/habit-tracker-app/index.html",
-  "/habit-tracker-app/style.css",
-  "/habit-tracker-app/app.js",
-  "/habit-tracker-app/manifest.json"
+const CACHE_NAME = "habit-tracker-cache-v1";
+const urlsToCache = [
+  "/",
+  "/index.html",
+  "/style.css",
+  "/app.js",
+  "/manifest.json",
+  "/icons/icon-192.png",
+  "/icons/icon-512.png"
 ];
 
-self.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache)));
 });
 
-self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((res) => res || fetch(e.request))
-  );
+self.addEventListener("fetch", event => {
+  event.respondWith(caches.match(event.request).then(response => response || fetch(event.request)));
 });
