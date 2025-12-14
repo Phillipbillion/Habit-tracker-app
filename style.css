@@ -60,11 +60,30 @@ li {
   align-items: center;
 }
 
-#points {
+#points-level {
   margin-top: 15px;
   text-align: center;
+}
+
+#points, #level {
   font-weight: bold;
   font-size: 1.1em;
+}
+
+.progress-container {
+  width: 80%;
+  background: #ddd;
+  border-radius: 10px;
+  margin: 5px auto;
+  height: 12px;
+}
+
+.progress-bar {
+  height: 12px;
+  width: 0%;
+  background-color: #4CAF50;
+  border-radius: 10px;
+  transition: width 0.3s;
 }
 
 #badges h3 {
@@ -82,4 +101,20 @@ li {
   color: #ff9800;
   font-weight: bold;
   margin: 5px 0;
+}
+
+.badge-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #ff9800;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  font-weight: bold;
+  z-index: 999;
+  transition: opacity 0.5s, transform 0.5s;
 }
