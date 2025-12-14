@@ -1,49 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Habit Tracker</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Habit Tracker</title>
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#4CAF50">
+<!-- PWA Manifest -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#4CAF50">
 
-  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Habit Tracker</h1>
+<div class="container">
+  <h1>Habit Tracker</h1>
 
-    <p class="notice">
-      This app runs entirely in your browser. No accounts. No data collection.
-    </p>
+  <p class="notice">
+    This app runs entirely in your browser. No accounts. No data collection.
+  </p>
 
-    <div id="upgrade-section">
-      <a href="https://buymeacoffee.com/YOURNAME" target="_blank" rel="noopener">
-        <button id="upgrade-btn">Support & Enable Pro</button>
-      </a>
-    </div>
+  <div id="upgrade-section">
+    <a href="https://buymeacoffee.com/YOURNAME" target="_blank" rel="noopener">
+      <button id="upgrade-btn">Support & Enable Pro</button>
+    </a>
+  </div>
 
-    <input type="text" id="habit-input" placeholder="Add a new habit">
-    <button id="add-habit-btn">Add Habit</button>
+  <input type="text" id="habit-input" placeholder="Add a new habit">
+  <button id="add-habit-btn">Add Habit</button>
 
-    <ul id="habit-list"></ul>
+  <ul id="habit-list"></ul>
 
+  <div id="points-level">
     <div id="points">Points: 0</div>
-    <div id="badges">
-      <h3>Badges Unlocked:</h3>
-      <ul id="badge-list"></ul>
+    <div id="level">Level: 1</div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progress-bar"></div>
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <div id="badges">
+    <h3>Badges Unlocked:</h3>
+    <ul id="badge-list"></ul>
+  </div>
+</div>
 
-  <!-- Service Worker -->
-  <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("service-worker.js");
-    }
-  </script>
+<!-- Badge popup -->
+<div id="badge-popup" class="badge-popup"></div>
+
+<script src="app.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
 </body>
-  </html>
+</html>
