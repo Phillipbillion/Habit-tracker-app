@@ -4,55 +4,57 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Habit Tracker</title>
-
-<!-- PWA Manifest -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#4CAF50">
-
 <link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 <div class="container">
   <h1>Habit Tracker</h1>
+  <p class="notice">This app runs entirely in your browser. No accounts. No data collection.</p>
 
-  <p class="notice">
-    This app runs entirely in your browser. No accounts. No data collection.
-  </p>
-
-  <div id="upgrade-section">
-    <a href="https://buymeacoffee.com/YOURNAME" target="_blank" rel="noopener">
-      <button id="upgrade-btn">Support & Enable Pro</button>
-    </a>
+  <!-- Upgrade / Pro -->
+  <button id="upgrade-btn">Support & Enable Pro</button>
+  <div id="pro-section">
+    <h3>Pro Perks</h3>
+    <ul>
+      <li>✅ Unlimited Habits</li>
+      <li>🎨 Custom Themes</li>
+      <li>🏆 Special Badges</li>
+      <li>📊 Detailed Stats & Charts</li>
+    </ul>
   </div>
 
+  <!-- Habit input -->
   <input type="text" id="habit-input" placeholder="Add a new habit">
   <button id="add-habit-btn">Add Habit</button>
 
+  <!-- Habit list -->
   <ul id="habit-list"></ul>
 
-  <div id="points-level">
-    <div id="points">Points: 0</div>
-    <div id="level">Level: 1</div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progress-bar"></div>
-    </div>
+  <!-- Points & Stats -->
+  <p id="points">Points: 0</p>
+  <p id="today-completed">Habits completed today: 0</p>
+  <p id="longest-streak">Longest streak: 0</p>
+
+  <!-- Analytics -->
+  <div id="analytics-panel">
+    <h3>📈 Analytics & Insights (Pro Only)</h3>
+    <p id="weekly-completed">Habits completed this week: 0</p>
+    <p id="monthly-completed">Habits completed this month: 0</p>
+    <canvas id="weekly-chart" width="400" height="200"></canvas>
+    <canvas id="monthly-chart" width="400" height="200"></canvas>
   </div>
 
-  <div id="badges">
-    <h3>Badges Unlocked:</h3>
-    <ul id="badge-list"></ul>
+  <!-- AI Suggestions -->
+  <div id="ai-suggestions-panel">
+    <h3>🤖 AI Suggestions & Motivation</h3>
+    <ul id="ai-suggestions-list"></ul>
   </div>
+
+  <!-- Theme toggle -->
+  <button id="theme-toggle-btn">🌙 Dark Mode</button>
+
 </div>
-
-<!-- Badge popup -->
-<div id="badge-popup" class="badge-popup"></div>
-
 <script src="app.js"></script>
-
-<script>
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("service-worker.js");
-  }
-</script>
 </body>
 </html>
