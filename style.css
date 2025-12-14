@@ -1,13 +1,142 @@
-body { margin:0; font-family: Arial, sans-serif; background: #f0f0f0; transition:0.3s;}
-.app-container { max-width:600px; margin:auto; padding-bottom:50px;}
-header { display:flex; justify-content:space-between; align-items:center; padding:10px; background:#fff; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-button { cursor:pointer; padding:5px 10px; margin:5px; border:none; border-radius:5px; background:#4CAF50; color:#fff; transition:0.2s;}
-button:hover { background:#45a049; }
-.card { background:#fff; padding:15px; margin:10px 0; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1);}
-.habit-cards .card { display:flex; justify-content:space-between; align-items:center; }
-.modal { display:none; position:fixed; top:0; right:0; width:300px; height:100%; background:#fff; box-shadow:-2px 0 5px rgba(0,0,0,0.2); padding:20px; overflow:auto; transition:0.3s;}
-.modal.active { display:block;}
-.dark-mode { background:#121212; color:#f4f4f4;}
-.dark-mode .card { background:#1f1f1f; box-shadow:0 2px 5px rgba(0,0,0,0.5);}
-.blue-mode { background:#e0f7fa; color:#006064;}
-.purple-mode { background:#f3e5f5; color:#4a148c;}
+/* -------------------------
+   Base Styles (Phase 10)
+--------------------------*/
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  padding: 1rem;
+  background-color: var(--accent-color);
+  color: white;
+  text-align: center;
+}
+
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #eee;
+  padding: 0.5rem 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottom-nav button {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.bottom-nav button.active {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  margin-bottom: 60px; /* space for bottom nav */
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+.notice {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+input[type=text] {
+  padding: 0.5rem;
+  width: calc(100% - 110px);
+  margin-right: 0.5rem;
+}
+
+#habit-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#habit-list li {
+  background: #fff;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* -------------------------
+   Phase 11: Themes & Accent
+--------------------------*/
+/* Accent color variable */
+:root {
+  --accent-color: #4CAF50;
+}
+
+/* Theme colors */
+body.light-mode {
+  background-color: #f7f7f7;
+  color: #222;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+/* Buttons */
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  margin: 0.2rem 0.2rem 0.5rem 0;
+  cursor: pointer;
+}
+
+/* Hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Inputs */
+input[type=text] {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Settings section spacing */
+#section-settings p,
+#section-settings label,
+#section-settings button {
+  display: block;
+  margin: 0.5rem 0;
+}
+
+/* Canvas charts responsive */
+canvas {
+  max-width: 100%;
+  height: auto;
+}
