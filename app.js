@@ -3,7 +3,11 @@ const habitInput = document.getElementById("habit-input");
 const addHabitBtn = document.getElementById("add-habit-btn");
 const habitList = document.getElementById("habit-list");
 const pointsDisplay = document.getElementById("points");
+const levelDisplay = document.getElementById("level");
+const progressBar = document.getElementById("progress-bar");
 const upgradeBtn = document.getElementById("upgrade-btn");
+const badgeList = document.getElementById("badge-list");
+const badgePopup = document.getElementById("badge-popup");
 
 // Load data
 let habits = JSON.parse(localStorage.getItem("habits")) || [];
@@ -11,6 +15,22 @@ let points = parseInt(localStorage.getItem("points")) || 0;
 let isPro = JSON.parse(localStorage.getItem("isPro")) || false;
 let streaks = JSON.parse(localStorage.getItem("streaks")) || {};
 let badges = JSON.parse(localStorage.getItem("badges")) || [];
+
+// Levels
+function getLevel() {
+  if (points >= 100) return 5;
+  if (points >= 50) return 4;
+  if (points >= 25) return 3;
+  if (points >= 10) return 2;
+  return 1;
+}
+
+function getProgressPercent() {
+  const level = getLevel();
+  const nextThreshold = [0,10,25,50,100][level] || 100;
+  const prevThreshold = [0,0,10,25,50][level] || 0;
+  return ((points - prevThreshold) / (nextThreshold - prevThreshold)) * 100;
+}
 
 // Render everything
 function renderHabits() {
@@ -26,7 +46,6 @@ function renderHabits() {
 
     li.appendChild(doneBtn);
 
-    // Streak display
     const streakSpan = document.createElement("span");
     streakSpan.textContent = ` 🔥 ${streaks[habit.name] || 0}d`;
     li.appendChild(streakSpan);
@@ -35,9 +54,10 @@ function renderHabits() {
   });
 
   pointsDisplay.textContent = `Points: ${points}`;
+  levelDisplay.textContent = `Level: ${getLevel()}`;
+  progressBar.style.width = getProgressPercent() + "%";
 
   // Render badges
-  const badgeList = document.getElementById("badge-list");
   badgeList.innerHTML = "";
   badges.forEach(b => {
     const li = document.createElement("li");
@@ -82,15 +102,37 @@ function addHabit() {
   renderHabits();
 }
 
-// Check badges
+// Check badges and show popup
 function checkBadges() {
-  if (points >= 10 && !badges.includes("10 Points")) badges.push("10 Points");
+  const newBadges = [];
+
+  if (points >= 10 && !badges.includes("10 Points")) newBadges.push("10 Points");
+  if (points >= 25 && !badges.includes("25 Points")) newBadges.push("25 Points");
 
   for (const habit in streaks) {
     if (streaks[habit] >= 5 && !badges.includes(`${habit} 5-Day Streak`)) {
-      badges.push(`${habit} 5-Day Streak`);
+      newBadges.push(`${habit} 5-Day Streak`);
+    }
+    if (streaks[habit] >= 10 && !badges.includes(`${habit} 10-Day Streak`)) {
+      newBadges.push(`${habit} 10-Day Streak`);
     }
   }
+
+  newBadges.forEach(b => {
+    badges.push(b);
+    showBadgePopup(b);
+  });
+}
+
+// Badge popup animation
+function showBadgePopup(badgeName) {
+  badgePopup.textContent = `🏆 ${badgeName} Unlocked!`;
+  badgePopup.style.opacity = "1";
+  badgePopup.style.transform = "translateY(0)";
+  setTimeout(() => {
+    badgePopup.style.opacity = "0";
+    badgePopup.style.transform = "translateY(-30px)";
+  }, 2500);
 }
 
 // Save all data
