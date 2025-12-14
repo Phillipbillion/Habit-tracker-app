@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Habit Tracker</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4CAF50">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +16,7 @@
     <h1>Habit Tracker</h1>
 
     <p class="notice">
-      This app runs entirely in your browser. No accounts. No payments. No data collection.
+      This app runs entirely in your browser. No accounts. No data collection.
     </p>
 
     <div id="upgrade-section">
@@ -29,5 +34,12 @@
   </div>
 
   <script src="app.js"></script>
+
+  <!-- Service Worker -->
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
 </body>
 </html>
